@@ -23,7 +23,7 @@ jobs:
         
     - name: Download Notebook
       run: |
-        curl -L https://github.com/marieandrepayfit/Marie-Andr-/blob/main/TEST_de_Daily_occupancy.ipynb > TEST_de_Daily_occupancy.ipynb
+        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/TEST_de_Daily_occupancy.ipynb > TEST_de_Daily_occupancy.ipynb
 
     - name: Execute Jupyter Notebook
       run: |
