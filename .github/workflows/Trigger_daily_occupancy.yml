@@ -1,6 +1,7 @@
 name: Execute Colab Notebook
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 8 * * *' # Exécute à 8h00 UTC tous les jours
 
