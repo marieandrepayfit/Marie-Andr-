@@ -10,17 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v3
       with:
         python-version: '3.x'
 
     - name: Install Dependencies
       run: |
         pip install papermill jupyter
+        
+    - name: Download Notebook
+      run: |
+        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/Daily_occupancy.ipynb > Daily_occupancy.ipynb
 
     - name: Execute Jupyter Notebook
       run: |
-        papermill https://github.com/marieandrepayfit/Marie-Andr-/blob/main/Daily_occupancy.ipynb OutputNotebook.ipynb
+        papermill Daily_occupancy.ipynb OutputNotebook.ipynb
