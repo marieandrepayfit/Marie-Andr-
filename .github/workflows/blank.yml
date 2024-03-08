@@ -1,0 +1,25 @@
+name: Execute Colab Notebook
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Exécute à 8h00 UTC tous les jours
+
+jobs:
+  execute-notebook:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        pip install papermill jupyter
+
+    - name: Execute Jupyter Notebook
+      run: |
+        papermill https://github.com/marieandrepayfit/Marie-Andr-/blob/main/Daily_occupancy.ipynb OutputNotebook.ipynb
