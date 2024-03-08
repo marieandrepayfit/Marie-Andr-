@@ -19,7 +19,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        pip install papermill jupyter
+        pip install papermill jupyter pandas numpy
         
     - name: Download Notebook
       run: |
