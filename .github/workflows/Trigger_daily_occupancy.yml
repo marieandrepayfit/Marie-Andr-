@@ -23,10 +23,10 @@ jobs:
 
     - name: Download Notebook
       run: |
-        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/TEST_de_Daily_occupancy.ipynb > TEST_de_Daily_occupancy.ipynb
+        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/Automation_Daily_Occupancy.ipynb > Automation_Daily_Occupancy.ipynb
 
     - name: Execute Jupyter Notebook
       env:
         MY_API_KEY: ${{ secrets.MY_API_KEY }}
       run: |
-        papermill TEST_de_Daily_occupancy.ipynb OutputNotebook.ipynb -p API_KEY "${{ env.MY_API_KEY }}"
+        papermill Automation_Daily_Occupancy.ipynb OutputNotebook.ipynb -p API_KEY "${{ env.MY_API_KEY }}"
