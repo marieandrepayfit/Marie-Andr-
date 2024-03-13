@@ -27,6 +27,6 @@ jobs:
 
     - name: Execute Jupyter Notebook
       env:
-        MY_API_KEY: ${{ secrets.MY_API_KEY }} # Utiliser le secret comme une variable d'environnement
+        MY_API_KEY: ${{ secrets.MY_API_KEY }}
       run: |
-        papermill TEST_de_Daily_occupancy.ipynb OutputNotebook.ipynb -p API_KEY $MY_API_KEY
+        papermill TEST_de_Daily_occupancy.ipynb OutputNotebook.ipynb -p API_KEY "${{ env.MY_API_KEY }}"
