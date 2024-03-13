@@ -3,7 +3,7 @@ name: Execute Colab Notebook
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 * * *' # Exécute à 8h00 UTC tous les jours
+    - cron: '40 8 * * *' # Exécute à 8h40 UTC tous les jours
 
 jobs:
   execute-notebook:
