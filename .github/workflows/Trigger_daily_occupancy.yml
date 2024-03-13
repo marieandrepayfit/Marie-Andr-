@@ -27,6 +27,6 @@ jobs:
 
     - name: Execute Jupyter Notebook
       env:
-        MY_API_KEY: ${{ secrets.MY_API_KEY }}
+        DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
       run: |
-        papermill Automation_Daily_Occupancy.ipynb OutputNotebook.ipynb -p API_KEY "${{ env.MY_API_KEY }}"
+        papermill Automation_Daily_Occupancy.ipynb OutputNotebook.ipynb -p API_KEY "${{ env.DRIVE_API_KEY }}"
