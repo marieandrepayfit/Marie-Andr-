@@ -20,11 +20,13 @@ jobs:
     - name: Install Dependencies
       run: |
         pip install papermill jupyter pandas numpy
-        
+
     - name: Download Notebook
       run: |
         curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/TEST_de_Daily_occupancy.ipynb > TEST_de_Daily_occupancy.ipynb
 
     - name: Execute Jupyter Notebook
+      env:
+        MY_API_KEY: ${{ secrets.MY_API_KEY }} # Utiliser le secret comme une variable d'environnement
       run: |
-        papermill TEST_de_Daily_occupancy.ipynb OutputNotebook.ipynb
+        papermill TEST_de_Daily_occupancy.ipynb OutputNotebook.ipynb -p API_KEY $MY_API_KEY
