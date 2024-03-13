@@ -25,12 +25,8 @@ jobs:
       run: |
         curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/Automation_Daily_Occupancy.ipynb > Automation_Daily_Occupancy.ipynb
 
-    - name: Write API Key to File
+    - name: Set up Python and execute script
       env:
         DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
-      run: |
-        echo "$DRIVE_API_KEY" > drive_api_key.json
-
-    - name: Execute Jupyter Notebook
       run: |
         papermill Automation_Daily_Occupancy.ipynb OutputNotebook.ipynb
