@@ -23,10 +23,10 @@ jobs:
 
     - name: Download Notebook
       run: |
-        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/Weekly_Occupancy.ipynb > Weekly_Occupancy.ipynb
+        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/Automation_Weekly_occupancy.ipynb > Automation_Weekly_occupancy.ipynb
 
     - name: Set up Python and execute script
       env:
         DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
       run: |
-        papermill Weekly_Occupancy.ipynb OutputNotebook.ipynb
+        papermill Automation_Weekly_occupancy.ipynb OutputNotebook.ipynb
