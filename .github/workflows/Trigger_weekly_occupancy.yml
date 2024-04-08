@@ -1,4 +1,4 @@
-name: Execute Weekly Colab Notebook
+name: Execute Weekly Occupancy Colab Notebook
 
 on:
   workflow_dispatch:
