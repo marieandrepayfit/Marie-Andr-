@@ -1,0 +1,32 @@
+name: Execute Colab Notebook
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '40 7 * * 1' # Exécute à 8h40 CET (Central European Time) tous les lundis
+
+jobs:
+  execute-notebook:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        pip install papermill jupyter pandas numpy gspread oauth2client
+
+    - name: Download Notebook
+      run: |
+        curl -L https://raw.githubusercontent.com/marieandrepayfit/Marie-Andr-/main/Weekly_Occupancy.ipynb > Weekly_Occupancy.ipynb
+
+    - name: Set up Python and execute script
+      env:
+        DRIVE_API_KEY: ${{ secrets.DRIVE_API_KEY }}
+      run: |
+        papermill Weekly_Occupancy.ipynb OutputNotebook.ipynb
