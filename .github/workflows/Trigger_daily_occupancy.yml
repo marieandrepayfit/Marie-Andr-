@@ -3,7 +3,7 @@ name: Execute Daily Occupancy Colab Notebook
 on:
   workflow_dispatch:
   schedule:
-    - cron: '40 7 * * *' # Exécute à 8h40 CET (Central European Time) tous les jours
+    - cron: '40 6 * * *' # Exécute à 8h40 CET (Central European Time) tous les jours
 
 jobs:
   execute-notebook:
