@@ -13,11 +13,11 @@ PASSPHRASE = os.environ['SNOWFLAKE_PASSPHRASE']
 GOOGLE_SERVICE_ACCOUNT_JSON = os.environ['GOOGLE_SERVICE_ACCOUNT_JSON']
 
 # --- Paramètres à adapter directement dans le code ---
-USER = "user_generic"
+USER = "PROD_CS_WRB"
 ACCOUNT = "PAYFIT-DATA"
 ACCOUNT_URL = "PAYFIT-DATA.snowflakecomputing.com"
 WAREHOUSE = "ANALYSIS"
-ROLE = "SQUAD - ANALYSIS"
+ROLE = "PROD_CS_WRB"
 DATABASE = "RAW_PROD"
 SCHEMA = "PUBLIC"
 SQL = "SELECT * FROM raw_prod.staging_dust.assistant_messages LIMIT 10"
