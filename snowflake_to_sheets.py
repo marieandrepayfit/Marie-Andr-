@@ -67,6 +67,7 @@ resp = requests.post(token_url, data={
     "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
     "assertion": jwt_token
 })
+print("Réponse Snowflake :", resp.text)
 resp.raise_for_status()
 access_token = resp.json()['access_token']
 
