@@ -21,7 +21,7 @@ ROLE = "SQUAD - ANALYSIS"
 DATABASE = "RAW_PROD"
 SCHEMA = "PUBLIC"
 SQL = "SELECT * FROM raw_prod.staging_dust.assistant_messages LIMIT 10"
-GOOGLE_SHEET_ID = "TON_ID_DE_SHEET"  # Mets ici l'ID de ton Google Sheet
+GOOGLE_SHEET_ID = "1jtOe8g5Bkgv02TFp9AZi101SDJJ5NNMtGJQqmCYInBU"  # Mets ici l'ID de ton Google Sheet
 
 # --- Authentification Google Sheets via secret JSON ---
 SERVICE_ACCOUNT_INFO = json.loads(GOOGLE_SERVICE_ACCOUNT_JSON)
