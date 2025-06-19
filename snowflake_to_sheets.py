@@ -14,8 +14,8 @@ GOOGLE_SERVICE_ACCOUNT_JSON = os.environ['GOOGLE_SERVICE_ACCOUNT_JSON']
 
 # --- Paramètres à adapter directement dans le code ---
 USER = "user_generic"
-ACCOUNT = "payfit-data"
-ACCOUNT_URL = "payfit-data.snowflakecomputing.com"
+ACCOUNT = "PAYFIT-DATA"
+ACCOUNT_URL = "PAYFIT-DATA.snowflakecomputing.com"
 WAREHOUSE = "ANALYSIS"
 ROLE = "SQUAD - ANALYSIS"
 DATABASE = "RAW_PROD"
