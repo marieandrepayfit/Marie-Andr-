@@ -5,6 +5,7 @@ import time
 import jwt
 import gspread
 from google.oauth2.service_account import Credentials
+from cryptography.hazmat.primitives import serialization
 
 # --- Secrets GitHub Actions ---
 PRIVATE_KEY = os.environ['SNOWFLAKE_PRIVATE_KEY']
@@ -20,7 +21,7 @@ ROLE = "SQUAD - ANALYSIS"
 DATABASE = "RAW_PROD"
 SCHEMA = "PUBLIC"
 SQL = "SELECT * FROM raw_prod.staging_dust.assistant_messages LIMIT 10"
-GOOGLE_SHEET_ID = "1jtOe8g5Bkgv02TFp9AZi101SDJJ5NNMtGJQqmCYInBU"  # Mets ici l'ID de ton Google Sheet
+GOOGLE_SHEET_ID = "TON_ID_DE_SHEET"  # Mets ici l'ID de ton Google Sheet
 
 # --- Authentification Google Sheets via secret JSON ---
 SERVICE_ACCOUNT_INFO = json.loads(GOOGLE_SERVICE_ACCOUNT_JSON)
@@ -32,6 +33,18 @@ gc = gspread.authorize(creds)
 sh = gc.open_by_key(GOOGLE_SHEET_ID)
 worksheet = sh.worksheet('Test MAN')  # Modifie si besoin
 
+# --- Décrypter la clé privée chiffrée ---
+private_key_obj = serialization.load_pem_private_key(
+    PRIVATE_KEY.encode("utf-8"),
+    password=PASSPHRASE.encode("utf-8"),
+)
+
+private_key_decrypted = private_key_obj.private_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PrivateFormat.PKCS8,
+    encryption_algorithm=serialization.NoEncryption(),
+)
+
 # --- Générer JWT pour Snowflake ---
 now = int(time.time())
 payload = {
@@ -41,11 +54,11 @@ payload = {
     "iat": now,
     "exp": now + 300
 }
+
 jwt_token = jwt.encode(
     payload,
-    PRIVATE_KEY,
-    algorithm='RS256',
-    passphrase=PASSPHRASE
+    private_key_decrypted,
+    algorithm='RS256'
 )
 
 # --- Obtenir l'access_token Snowflake ---
