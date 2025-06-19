@@ -1,0 +1,23 @@
+name: Snowflake to Sheets
+
+on:
+  workflow_dispatch:  # Lancement manuel
+  schedule:
+    - cron: '0 7 * * 1-5'  # (optionnel)
+
+jobs:
+  snowflake-to-sheets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer les dépendances
+        run: |
+          pip install pyjwt cryptography requests gspread google-auth
+
+      - name: Exécuter le script
+        env:
+          SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
+          SNOWFLAKE_PASSPHRASE: ${{ secrets.SNOWFLAKE_PASSPHRASE }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: python snowflake_to_sheets.py
