@@ -2,8 +2,8 @@ name: Snowflake to Sheets
 
 on:
   workflow_dispatch:  # Lancement manuel
-  schedule:
-    - cron: '0 7 * * 1-5'  # (optionnel)
+##  schedule:
+##    - cron: '0 7 * * 1-5'  # (optionnel)
 
 jobs:
   snowflake-to-sheets:
